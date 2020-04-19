@@ -1,25 +1,59 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import HomeScreen from './src/pages/HomeScreen'
-import PhotoScreen from './src/pages/PhotoScreen'
-import ProfileScreen from './src/pages/ProfileScreen'
-import NotificationScreen from './src/pages/NotificationScreen'
-import SearchScreen from './src/pages/SearchScreen'
+import { Button, View, Text, Dimensions } from 'react-native'
+import { SceneMap, TabView } from 'react-native-tab-view'
 
-const Tab = createMaterialBottomTabNavigator()
+import MainScreen from './src/pages/TabView/MainScreen'
+import DirectScreen from './src/pages/TabView/DirectScreen'
+import CameraScreen from './src/pages/TabView/CameraScreen'
+
+const Stack = createStackNavigator()
+
+const initialLayout = { width: Dimensions.get('window').width }
+
+function TabScreen () {
+  const [index, setIndex] = React.useState(1)
+  const [routes] = React.useState([
+    { key: 'camera', title: 'camera' },
+    { key: 'main', title: 'main' },
+    { key: 'direct', title: 'direct' }
+  ])
+
+  const renderScene = SceneMap({
+    main: MainScreen,
+    camera: CameraScreen,
+    direct: DirectScreen
+  })
+
+  return (
+    <TabView
+      renderTabBar={() => null}
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={initialLayout}
+    />
+  )
+}
+
+function Root ({ navigation }) {
+  return (
+    <View>
+      <Text>Root</Text>
+      <Button title='vamo nessa' onPress={() => navigation.navigate('Main')} />
+    </View>
+  )
+}
 
 export default function App () {
   return (
     <NavigationContainer>
-      <Tab.Navigator barStyle={{ backgroundColor: '#1A1a1a' }}>
-        <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ tabBarIcon: 'home', tabBarLabel: '' }} />
-        <Tab.Screen name='SearchScreen' component={SearchScreen} options={{ tabBarIcon: 'magnify', tabBarLabel: '' }} />
-        <Tab.Screen name='PhotoScreen' component={PhotoScreen} options={{ tabBarIcon: 'plus-box', tabBarLabel: '' }} />
-        <Tab.Screen name='NotificationScreen' component={NotificationScreen} options={{ tabBarIcon: 'heart-outline', tabBarLabel: '' }} />
-        <Tab.Screen name='ProfileScreen' component={ProfileScreen} options={{ tabBarIcon: 'account', tabBarLabel: '' }} />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName='Root' screenOptions={{ header: () => null }}>
+        <Stack.Screen name='Root' component={Root} />
+        <Stack.Screen name='Main' component={TabScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
