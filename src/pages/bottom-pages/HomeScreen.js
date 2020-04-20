@@ -4,6 +4,7 @@ import { Header, Icon } from 'react-native-elements'
 import Unsplash from '../../api/Unsplash'
 import Post from '../../components/Post'
 import Storys from '../../components/Storys'
+import InstaIcon from '../../components/CustomIcons'
 
 const HomeScreen = ({ navigation }) => {
   const [photos, setPhotos] = useState([])
@@ -22,9 +23,9 @@ const HomeScreen = ({ navigation }) => {
     <View style={{ backgroundColor: '#000000', flex: 1 }}>
       <Header
         placement='left'
-        leftComponent={<Icon name='photo-camera' tyle='material' color='white' />}
+        leftComponent={<InstaIcon size={35} name='Prancheta-4-cpia-15' tyle='material' color='white' />}
         centerComponent={{ text: 'Instagram do Fer', style: { color: '#fff', fontSize: 18 } }}
-        rightComponent={<Icon underlayColor='transparent' onPress={() => console.log('testee')} name='send' tyle='material' color='white' />}
+        rightComponent={<InstaIcon underlayColor='transparent' onPress={() => console.log('testee')} name='send' color='white' size={35} />}
         containerStyle={{
           backgroundColor: '#1a1a1a',
           justifyContent: 'space-around',

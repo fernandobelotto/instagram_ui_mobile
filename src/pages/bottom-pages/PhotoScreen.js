@@ -1,11 +1,40 @@
 import * as React from 'react'
-import { View, StyleSheet, Dimensions } from 'react-native'
+import { View, StyleSheet, Dimensions, Text, Image, Button, FlatList } from 'react-native'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 import { Header, Icon } from 'react-native-elements'
+import * as MediaLibrary from 'expo-media-library'
 
-const FirstRoute = () => (
-  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-)
+const FirstRoute = () => {
+  const [photos, setPhotos] = React.useState([])
+  const handleButtonPress = async () => {
+    const { status } = await MediaLibrary.requestPermissionsAsync()
+    const media = await MediaLibrary.getAssetsAsync()
+    console.log(media)
+    setPhotos(media)
+    const data = await MediaLibrary.getAssetInfoAsync('4604')
+    // console.log(data)
+    // const video = await MediaLibrary.getAssetInfoAsync(media.assets['0'])
+    // console.log(video)
+  }
+  return (
+    <View>
+      {/* <Image style={{ width: 100, height: 100 }} source={require('file:///storage/emulated/0/DCIM/Camera/IMG_20200206_163737.jpg')} /> */}
+      <Button title='Load Images' onPress={() => handleButtonPress()} />
+      <Text>só um teste</Text>
+      <Text>só um teste</Text>
+      <Image style={{ height: 200, width: 200 }} source={{ uri: 'file:///storage/emulated/0/DCIM/Camera/IMG_20200206_163737.jpg' }} />
+      <FlatList
+        data={photos}
+        keyExtractor={i => i.id}
+        renderItem={({ item }) => {
+          return (
+            <Image style={{ height: 100, width: 100 }} source={{ uri: item.uri }} />
+          )
+        }}
+      />
+    </View>
+  )
+}
 
 const SecondRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />

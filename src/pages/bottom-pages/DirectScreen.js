@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, FlatList, ScrollView, TextInput } from 'react-native'
 import { Avatar, Header, Icon } from 'react-native-elements'
 import TabChat from '../../components/TabChat'
+import Unsplash from '../../api/Unsplash'
 
 const DirectScreen = () => {
   const [term, setTerm] = useState('')
+
   return (
     <View style={{ backgroundColor: '#000000', flex: 1 }}>
       <Header

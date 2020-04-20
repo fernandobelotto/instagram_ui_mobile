@@ -5,8 +5,6 @@ import PhotoThumb from './PhotoThumb'
 
 export default function PhotoGrid ({ navigation }) {
   const [photos, setPhotos] = useState([])
-  const [photos1, setPhotos1] = useState([])
-  const [photos2, setPhotos2] = useState([])
   useEffect(() => { getPhotos() }, [])
 
   const getPhotos = async () => {
@@ -19,19 +17,17 @@ export default function PhotoGrid ({ navigation }) {
   }
 
   return (
-    <View>
-      <FlatList
-        numColumns={3}
-        keyExtractor={(i) => i.id}
-        data={photos}
-        renderItem={({ item }) => {
-          return (
-            <View style={{ flexDirection: 'row' }}>
-              <PhotoThumb data={item} navigation={navigation} />
-            </View>
-          )
-        }}
-      />
-    </View>
+    <FlatList
+      numColumns={3}
+      keyExtractor={(i) => i.id}
+      data={photos}
+      renderItem={({ item }) => {
+        return (
+          <View style={{ flexDirection: 'row' }}>
+            <PhotoThumb data={item} navigation={navigation} />
+          </View>
+        )
+      }}
+    />
   )
 }

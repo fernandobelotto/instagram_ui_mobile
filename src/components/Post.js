@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Avatar, Image, Icon } from 'react-native-elements'
+import InstaIcon from './CustomIcons'
 
 const Post = ({ data, navigation }) => {
   const [liked, setLiked] = useState(false)
@@ -17,15 +18,17 @@ const Post = ({ data, navigation }) => {
         source={{ uri: `${data.urls.small}` }}
         style={{ width: '100%', height: 400 }}
       />
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', margin: 15 }}>
         {liked
-          ? <Icon underlayColor='transparent' name='heart' type='font-awesome' onPress={() => setLiked(!liked)} color='red' size={30} containerStyle={{ marginLeft: 10, marginVertical: 5 }} />
-          : <Icon underlayColor='transparent' name='heart-o' type='font-awesome' onPress={() => setLiked(!liked)} color='white' size={30} containerStyle={{ marginLeft: 10, marginVertical: 5 }} />}
-        <Icon underlayColor='transparent' onPress={() => navigation.navigate('CommentsScreen')} name='ios-chatbubbles' type='ionicon' color='white' size={30} containerStyle={{ marginHorizontal: 10, marginVertical: 5 }} />
-        <Icon underlayColor='transparent' name='ios-send' type='ionicon' color='white' size={30} containerStyle={{ marginVertical: 5 }} />
-        {saved
-          ? <Icon underlayColor='transparent' name='bookmark' type='material' onPress={() => setSaved(!saved)} color='white' size={30} containerStyle={{ marginVertical: 5, flex: 1, alignItems: 'flex-end' }} />
-          : <Icon underlayColor='transparent' name='bookmark-border' onPress={() => setSaved(!saved)} type='material' color='white' size={30} containerStyle={{ marginVertical: 5, flex: 1, alignItems: 'flex-end' }} />}
+          ? <InstaIcon underlayColor='transparent' name='heart' onPress={() => setLiked(!liked)} color='white' size={35} />
+          : <InstaIcon underlayColor='transparent' name='heart-fill' color='red' onPress={() => setLiked(!liked)} size={35} />}
+        <InstaIcon underlayColor='transparent' onPress={() => navigation.navigate('CommentsScreen')} name='chat' color='white' size={35} style={{ marginHorizontal: 10 }} />
+        <InstaIcon underlayColor='transparent' name='send' color='white' size={35} />
+        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+          {saved
+            ? <InstaIcon underlayColor='transparent' name='bookmark-fill' onPress={() => setSaved(!saved)} color='white' size={30} />
+            : <InstaIcon underlayColor='transparent' name='bookmark' onPress={() => setSaved(!saved)} color='white' size={30} />}
+        </View>
       </View>
       <Text style={{ color: 'white', marginLeft: 10, fontSize: 14 }}>Liked by {data.likes} and others</Text>
     </View>
