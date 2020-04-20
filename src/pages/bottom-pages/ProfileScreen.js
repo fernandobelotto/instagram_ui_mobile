@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, View, FlatList, ScrollView } from 'react-native'
 import { Avatar, Header, Icon } from 'react-native-elements'
-import Tab from '../components/Tab'
+import Tab from '../../components/Tab'
 import { ActionSheetProvider } from '@expo/react-native-action-sheet'
-import BlackButton from '../components/BlackButton'
+import BlackButton from '../../components/BlackButton'
 
 const NotificationScreen = () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 22, 10, 23, 45, 67, 8, 12, 14]

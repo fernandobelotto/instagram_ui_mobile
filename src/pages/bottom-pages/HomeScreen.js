@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { View, FlatList } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
-import Unsplash from '../api/Unsplash'
-import Post from '../components/Post'
-import Storys from '../components/Storys'
+import Unsplash from '../../api/Unsplash'
+import Post from '../../components/Post'
+import Storys from '../../components/Storys'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [photos, setPhotos] = useState([])
 
   useEffect(() => { getPhotos() }, [])
@@ -24,7 +24,7 @@ const HomeScreen = () => {
         placement='left'
         leftComponent={<Icon name='photo-camera' tyle='material' color='white' />}
         centerComponent={{ text: 'Instagram do Fer', style: { color: '#fff', fontSize: 18 } }}
-        rightComponent={{ icon: 'send', color: '#fff' }}
+        rightComponent={<Icon underlayColor='transparent' onPress={() => console.log('testee')} name='send' tyle='material' color='white' />}
         containerStyle={{
           backgroundColor: '#1a1a1a',
           justifyContent: 'space-around',
@@ -39,7 +39,7 @@ const HomeScreen = () => {
         data={photos}
         renderItem={({ item }) => {
           return (
-            <Storys data={item} />
+            <Storys data={item} navigation={navigation} />
           )
         }}
       />
@@ -48,7 +48,7 @@ const HomeScreen = () => {
         data={photos}
         renderItem={({ item }) => {
           return (
-            <Post data={item} />
+            <Post data={item} navigation={navigation} />
           )
         }}
       />

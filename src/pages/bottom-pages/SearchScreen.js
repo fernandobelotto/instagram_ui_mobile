@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
-import PhotoGrid from '../components/PhotoGrid'
-import BlackButton from '../components/BlackButton'
+import PhotoGrid from '../../components/PhotoGrid'
+import BlackButton from '../../components/BlackButton'
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const list = ['Travel', 'Architecture', 'Food', 'Beauty', 4, 5, 6, 7, 8, 9, 10, 11, 12]
   return (
     <View style={{ backgroundColor: '#000000', flex: 1 }}>
@@ -32,7 +32,7 @@ const SearchScreen = () => {
           )
         }}
       />
-      <PhotoGrid />
+      <PhotoGrid navigation={navigation} />
     </View>
   )
 }
