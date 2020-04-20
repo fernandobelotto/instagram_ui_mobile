@@ -29,8 +29,9 @@ const NotificationScreen = () => {
                     uri: 'https://images.unsplash.com/photo-1469460340997-2f854421e72f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
                   }}
                 />
-                <Text style={{ color: 'white', fontSize: 14, marginLeft: 10 }}>[nomedousuário] liked your photo. 1w</Text>
+                <Text style={{ color: 'white', fontSize: 14, marginLeft: 10 }}>Fulano liked your photo. 1w</Text>
                 <Avatar
+                  containerStyle={{ marginLeft: 50, alignSelf: 'flex-end' }}
                   title='MD' size={50} source={{
                     uri: 'https://images.unsplash.com/photo-1469460340997-2f854421e72f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
                   }}

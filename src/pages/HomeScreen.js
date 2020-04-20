@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
 import Unsplash from '../api/Unsplash'
 import Post from '../components/Post'
@@ -23,7 +23,7 @@ const HomeScreen = () => {
       <Header
         placement='left'
         leftComponent={<Icon name='photo-camera' tyle='material' color='white' />}
-        centerComponent={{ text: 'Instragram do Fer', style: { color: '#fff', fontSize: 18 } }}
+        centerComponent={{ text: 'Instagram do Fer', style: { color: '#fff', fontSize: 18 } }}
         rightComponent={{ icon: 'send', color: '#fff' }}
         containerStyle={{
           backgroundColor: '#1a1a1a',
@@ -33,6 +33,7 @@ const HomeScreen = () => {
         }}
       />
       <FlatList
+        style={{ paddingBottom: 13 }}
         horizontal
         keyExtractor={(i) => i.id}
         data={photos}
